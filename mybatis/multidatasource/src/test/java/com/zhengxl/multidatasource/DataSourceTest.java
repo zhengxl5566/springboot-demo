@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 /**
- * @description:
+ * @description:多数据源单元测试
  * @projectName:multidatasource
  * @see:com.zhengxl.multidatasource
  * @author:郑晓龙
@@ -24,7 +24,5 @@ public class DataSourceTest {
     public void testMultiDatasource(){
         System.out.println("firstDataSourceData:\n"+firstUserDAO.queryAll());
         System.out.println("secondDataSourceData:\n"+secondUserDAO.queryAll());
-
-        System.out.println(firstUserDAO.selectById(666));
     }
 }
