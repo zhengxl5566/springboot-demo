@@ -37,6 +37,7 @@ public class Second {
         bean.setDataSource(dataSource);
         bean.setMapperLocations(new PathMatchingResourcePatternResolver().getResources("classpath:mybatis/second/*.xml"));
         bean.setTypeAliasesPackage("com.zhengxl.multidatasource.entity");
+        // 开启 将表字段下划线命名规则 映射成驼峰命名规则
         org.apache.ibatis.session.Configuration config = new org.apache.ibatis.session.Configuration();
         config.setMapUnderscoreToCamelCase(true);
         bean.setConfiguration(config);

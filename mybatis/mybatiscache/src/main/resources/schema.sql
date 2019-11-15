@@ -1,0 +1,1 @@
+CREATE TABLE user (ID INT IDENTITY, name VARCHAR(64),pass_word VARCHAR(64));

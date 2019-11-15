@@ -1,0 +1,31 @@
+server:
+  port: 80
+spring:
+  #H2数据库配置
+  h2:
+    console:
+      path: /h2
+      settings:
+        web-allow-others: true
+  #数据源配置
+  datasource:
+    #H2数据库
+    url: jdbc:h2:mem:mydb
+    username: sa
+    password:
+    driver-class-name: org.h2.Driver
+  application:
+    name: MybatisCache
+
+#mybatis配置
+mybatis:
+  enable: true
+  mapper-locations: classpath:mybatis/*.xml
+  type-aliases-package: com.zhengxl.mybatiscache.entity
+  configuration:
+    #自动将表字段的下划线命名映射为驼峰命名
+    map-underscore-to-camel-case: true
+
+logging:
+  level:
+    com.zhengxl.mybatiscache.mapper: debug
