@@ -1,1 +1,2 @@
 CREATE TABLE user (ID INT IDENTITY, name VARCHAR(64),pass_word VARCHAR(64));
+CREATE TABLE user_order (ID INT IDENTITY, user_id INT ,good_name VARCHAR(64));
