@@ -1,0 +1,11 @@
+server:
+  port: 8080
+
+spring:
+  redis:
+    port: 6379
+    host: localhost
+#
+#logging:
+#  level: debug
+#
