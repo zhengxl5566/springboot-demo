@@ -1,0 +1,11 @@
+spring:
+  #数据源配置
+  datasource:
+    #mysql8.X
+    url: jdbc:mysql://localhost:3306/test_db2?serverTimezone=UTC&useSSL=false&allowPublicKeyRetrieval=true
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+mybatis:
+  mapper-locations: classpath:mybatis/*.xml
