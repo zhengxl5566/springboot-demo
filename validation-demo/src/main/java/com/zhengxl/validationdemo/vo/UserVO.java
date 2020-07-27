@@ -1,9 +1,11 @@
 package com.zhengxl.validationdemo.vo;
 
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
+import com.zhengxl.validationdemo.validategroup.Create;
+import com.zhengxl.validationdemo.validategroup.Update;
+
+import javax.swing.*;
+import javax.validation.constraints.*;
+import javax.validation.groups.Default;
 
 /**
  * @description:
@@ -14,14 +16,15 @@ import javax.validation.constraints.Pattern;
  * @version:1.0
  */
 public class UserVO {
-    @NotNull(message = "name不能为null")
+    @NotBlank(message = "name不能为空",groups = {Update.class})
     private String name;
+    @Min(value = 1,message = "年龄最小为1岁")
+    @Max(value = 120,message = "年龄最大为120岁")
+    @NotNull(message = "年龄不能为空")
     private Integer age;
-    @Email
-    @NotNull(message = "email 不能为null")
+    @Email(message = "email 格式错误")
     private String email;
-    @NotNull(message = "用户手机号不能为null")
-    @Pattern(regexp = "^1\\d{10}$",message = "手机号不合法")
+    @Pattern(regexp = "^1\\d{10}$", message = "手机号格式错误", groups = Create.class)
     private String phoneNumber;
 
     public String getName() {

@@ -1,4 +1,4 @@
-package com.zhengxl.validationdemo.controller;
+package com.zhengxl.validationdemo.common;
 
 import org.springframework.http.HttpStatus;
 
