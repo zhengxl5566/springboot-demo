@@ -2,10 +2,10 @@ package com.zhengxl.validationdemo.vo;
 
 import com.zhengxl.validationdemo.validategroup.Create;
 import com.zhengxl.validationdemo.validategroup.Update;
+import org.hibernate.validator.constraints.Range;
 
-import javax.swing.*;
 import javax.validation.constraints.*;
-import javax.validation.groups.Default;
+import java.math.BigDecimal;
 
 /**
  * @description:
@@ -16,16 +16,27 @@ import javax.validation.groups.Default;
  * @version:1.0
  */
 public class UserVO {
-    @NotBlank(message = "name不能为空",groups = {Update.class})
+//    ,groups = {Update.class}
+    @NotBlank(message = "name 不能为空")
     private String name;
-    @Min(value = 1,message = "年龄最小为1岁")
-    @Max(value = 120,message = "年龄最大为120岁")
-    @NotNull(message = "年龄不能为空")
+    @Range(min = 1,max = 120)
+    @NotNull(message = "age 不能为空")
     private Integer age;
+    @NotNull(message = "email 不能为空")
     @Email(message = "email 格式错误")
     private String email;
-    @Pattern(regexp = "^1\\d{10}$", message = "手机号格式错误", groups = Create.class)
+    @Pattern(regexp = "^1\\d{10}$", message = "phoneNumber 格式错误", groups = Create.class)
     private String phoneNumber;
+    @Digits(integer = 3,fraction = 1)
+    private BigDecimal bg;
+
+    public BigDecimal getBg() {
+        return bg;
+    }
+
+    public void setBg(BigDecimal bg) {
+        this.bg = bg;
+    }
 
     public String getName() {
         return name;
