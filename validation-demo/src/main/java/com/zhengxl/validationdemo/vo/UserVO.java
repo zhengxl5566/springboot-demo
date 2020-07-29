@@ -32,13 +32,13 @@ public class UserVO {
     @Digits(integer = 3, fraction = 1, message = "bg 字段的整数位最多为3位，小数位最多为1位")
     private BigDecimal bg;
     @Valid
-    private List<OrderVO> orderVO;
+    private OrderVO orderVO;
 
-    public List<OrderVO> getOrderVO() {
+    public OrderVO getOrderVO() {
         return orderVO;
     }
 
-    public void setOrderVO(List<OrderVO> orderVO) {
+    public void setOrderVO(OrderVO orderVO) {
         this.orderVO = orderVO;
     }
 
@@ -89,6 +89,8 @@ public class UserVO {
                 ", age=" + age +
                 ", email='" + email + '\'' +
                 ", phoneNumber='" + phoneNumber + '\'' +
+                ", bg=" + bg +
+                ", orderVO=" + orderVO +
                 '}';
     }
 }
