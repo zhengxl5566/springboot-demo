@@ -1,6 +1,8 @@
 package com.zhengxl.validationdemo.advice;
 
 import com.zhengxl.validationdemo.common.ResultInfo;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.BindException;
 import org.springframework.validation.FieldError;
@@ -26,6 +28,7 @@ import java.util.stream.Collectors;
 @RestControllerAdvice
 public class GlobalControllerAdvice {
 
+    private static final Logger logger = LoggerFactory.getLogger(GlobalControllerAdvice.class);
     /**
      * 客户端参数错误时返回信息
      **/
@@ -33,6 +36,7 @@ public class GlobalControllerAdvice {
 
     @ExceptionHandler(Exception.class)
     public ResultInfo exceptionHandler(Exception e) {
+        logger.error("全局异常：{}", e.getMessage());
         return new ResultInfo().error(HttpStatus.INTERNAL_SERVER_ERROR.value(), "服务器出错了，请联系管理员");
     }
 
@@ -97,5 +101,4 @@ public class GlobalControllerAdvice {
                 .collect(Collectors.toList());
         return new ResultInfo().success(HttpStatus.BAD_REQUEST.value(), BAD_REQUEST_MSG, collect);
     }
-
 }

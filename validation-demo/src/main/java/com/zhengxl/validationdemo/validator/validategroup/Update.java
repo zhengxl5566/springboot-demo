@@ -1,4 +1,4 @@
-package com.zhengxl.validationdemo.validategroup;
+package com.zhengxl.validationdemo.validator.validategroup;
 
 import javax.validation.groups.Default;
 
@@ -10,5 +10,5 @@ import javax.validation.groups.Default;
  * @createTime:2020/7/27 15:35
  * @version:1.0
  */
-public interface Update {
+public interface Update extends Default {
 }

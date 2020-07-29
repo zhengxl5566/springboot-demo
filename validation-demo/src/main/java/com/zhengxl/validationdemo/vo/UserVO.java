@@ -1,11 +1,13 @@
 package com.zhengxl.validationdemo.vo;
 
-import com.zhengxl.validationdemo.validategroup.Create;
-import com.zhengxl.validationdemo.validategroup.Update;
+import com.zhengxl.validationdemo.validator.annotation.HaveNoBlank;
+import com.zhengxl.validationdemo.validator.validategroup.Update;
 import org.hibernate.validator.constraints.Range;
 
+import javax.validation.Valid;
 import javax.validation.constraints.*;
 import java.math.BigDecimal;
+import java.util.List;
 
 /**
  * @description:
@@ -16,19 +18,29 @@ import java.math.BigDecimal;
  * @version:1.0
  */
 public class UserVO {
-//    ,groups = {Update.class}
-    @NotBlank(message = "name 不能为空")
+    @HaveNoBlank
+    @NotBlank(message = "name 不能为空", groups = Update.class)
     private String name;
-    @Range(min = 1,max = 120)
+    @Range(min = 1, max = 120, message = "年龄必须在[1,120]之间")
     @NotNull(message = "age 不能为空")
     private Integer age;
     @NotNull(message = "email 不能为空")
     @Email(message = "email 格式错误")
     private String email;
-    @Pattern(regexp = "^1\\d{10}$", message = "phoneNumber 格式错误", groups = Create.class)
+    @Pattern(regexp = "^1\\d{10}$", message = "phoneNumber 格式错误")
     private String phoneNumber;
-    @Digits(integer = 3,fraction = 1)
+    @Digits(integer = 3, fraction = 1, message = "bg 字段的整数位最多为3位，小数位最多为1位")
     private BigDecimal bg;
+    @Valid
+    private List<OrderVO> orderVO;
+
+    public List<OrderVO> getOrderVO() {
+        return orderVO;
+    }
+
+    public void setOrderVO(List<OrderVO> orderVO) {
+        this.orderVO = orderVO;
+    }
 
     public BigDecimal getBg() {
         return bg;
