@@ -25,3 +25,10 @@
 | slf4j  | slf4j使用简介 | [[JAVA\]SLF4J及其实现类框架使用简介](https://www.cnblogs.com/zhengxl5566/p/12301919.html) |
 |        |               |                                                              |
 
+### 4、/validation-demo:详细介绍了Springboot中如何使用 Spring Validation进行参数校验
+
+| 工程名          | 描述     | 文章                                                         |
+| --------------- | -------- | ------------------------------------------------------------ |
+| validation-demo | 参数校验 | [使用Spring Validation优雅地校验参数](https://www.cnblogs.com/zhengxl5566/p/13398546.html) |
+|                 |          |                                                              |
+
