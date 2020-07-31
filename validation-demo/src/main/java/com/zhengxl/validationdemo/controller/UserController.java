@@ -97,7 +97,7 @@ public class UserController {
      * @createTime 2020/7/28 18:14
      **/
     @PostMapping("add5/{userId}")
-    public ResultInfo add5(@PathVariable("userId") @NotNull Long userId) {
+    public ResultInfo add5(@PathVariable("userId") @NotNull(message = "userId不能为空") Long userId) {
         return new ResultInfo().success(userId);
     }
 

@@ -3,6 +3,7 @@ package com.zhengxl.validationdemo.advice;
 import com.zhengxl.validationdemo.common.ResultInfo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.context.support.DefaultMessageSourceResolvable;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.BindException;
 import org.springframework.validation.FieldError;
@@ -64,7 +65,7 @@ public class GlobalControllerAdvice {
     public ResultInfo bindExceptionHandler(BindException e) {
         List<FieldError> fieldErrors = e.getBindingResult().getFieldErrors();
         List<String> collect = fieldErrors.stream()
-                .map(o -> o.getDefaultMessage())
+                .map(DefaultMessageSourceResolvable::getDefaultMessage)
                 .collect(Collectors.toList());
         return new ResultInfo().success(HttpStatus.BAD_REQUEST.value(), BAD_REQUEST_MSG, collect);
     }
@@ -81,7 +82,7 @@ public class GlobalControllerAdvice {
     public ResultInfo constraintViolationExceptionHandler(ConstraintViolationException e) {
         Set<ConstraintViolation<?>> constraintViolations = e.getConstraintViolations();
         List<String> collect = constraintViolations.stream()
-                .map(o -> o.getMessage())
+                .map(ConstraintViolation::getMessage)
                 .collect(Collectors.toList());
         return new ResultInfo().success(HttpStatus.BAD_REQUEST.value(), BAD_REQUEST_MSG, collect);
     }
@@ -97,7 +98,7 @@ public class GlobalControllerAdvice {
     public ResultInfo methodArgumentNotValidExceptionHandler(MethodArgumentNotValidException e) {
         List<FieldError> fieldErrors = e.getBindingResult().getFieldErrors();
         List<String> collect = fieldErrors.stream()
-                .map(o -> o.getDefaultMessage())
+                .map(DefaultMessageSourceResolvable::getDefaultMessage)
                 .collect(Collectors.toList());
         return new ResultInfo().success(HttpStatus.BAD_REQUEST.value(), BAD_REQUEST_MSG, collect);
     }
