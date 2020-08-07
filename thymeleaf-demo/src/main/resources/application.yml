@@ -1,3 +1,9 @@
+server:
+  port: 8080
 spring:
   thymeleaf:
     cache: false
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 20MB
