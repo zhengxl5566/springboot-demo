@@ -5,13 +5,14 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.io.*;
-import java.net.URLEncoder;
+import java.io.IOException;
 
 
 /**
@@ -26,13 +27,12 @@ import java.net.URLEncoder;
 @RequestMapping("/upload")
 public class UploadController {
 
-    private final Logger logger = LoggerFactory.getLogger(UploadController.class);
-
-    private final String INDEX_PAGE = "index";
-    private final String SUCCESS_PAGE = "success";
+    private static final Logger logger = LoggerFactory.getLogger(UploadController.class);
+    private static final String INDEX_PAGE = "index";
+    private static final String SUCCESS_PAGE = "success";
 
     @Autowired
-    FileService fileService;
+    FileService fileservice;
 
 
     @GetMapping("/")
@@ -41,57 +41,26 @@ public class UploadController {
     }
 
     @PostMapping("/uploadFile")
-    public String add(@RequestParam("file") MultipartFile file) {
+    public String add(@RequestParam("file") MultipartFile file, Model model) throws IOException {
         if (file.isEmpty()) {
             return INDEX_PAGE;
         }
-        fileService.saveFile(file);
+        String fileName = fileservice.save(file);
 
+        model.addAttribute("fileName",fileName);
         return SUCCESS_PAGE;
     }
 
     @PostMapping("/uploadMultiFiles")
-    public String uploadMultiFiles(@RequestParam("files") MultipartFile[] files) {
+    public String uploadMultiFiles(@RequestParam("files") MultipartFile[] files) throws IOException {
         if (files.length <= 0) {
             return INDEX_PAGE;
         }
         for (MultipartFile file : files) {
-            fileService.saveFile(file);
+            fileservice.save(file);
         }
 
         return SUCCESS_PAGE;
-    }
-
-    @GetMapping("download")
-    @ResponseBody
-    public String download(String fileName,HttpServletRequest request, HttpServletResponse response) throws IOException {
-        request.setCharacterEncoding("UTF-8");
-        response.setContentType("application/octet-stream");
-
-        // 兼容IE
-        String ie = URLEncoder.encode(fileName, "UTF-8").replaceAll("\\+", "%20");
-        // chrome、firefox
-        String chrome = new String(fileName.getBytes("UTF-8"), "ISO8859-1");
-        response.setHeader("Content-disposition",
-                "attachment; filename=" + ie);
-        InputStream inputStream = fileService.getFile(fileName);
-
-        OutputStream outputStream = response.getOutputStream();
-
-        BufferedInputStream bis = new BufferedInputStream(inputStream);
-        BufferedOutputStream bos = new BufferedOutputStream(outputStream);
-        byte[] buff = new byte[1024];
-        int bytesRead;
-        //每次读取缓存大小的流，写到输出流
-        while (-1 != (bytesRead = bis.read(buff, 0, buff.length))) {
-            bos.write(buff, 0, bytesRead);
-        }
-        bos.flush();
-
-        // 大部分Web服务器都基于HTTP/1.1协议，会复用TCP连接。如果没有调用flush(),将导致缓冲区的内容无法及时发送到客户端
-        outputStream.flush();
-
-        return "下载成功";
     }
 
 
