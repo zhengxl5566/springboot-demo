@@ -1,16 +1,12 @@
 package com.zhengxl.thymeleafdemo.service.impl;
 
+import com.zhengxl.thymeleafdemo.repository.FileRepository;
 import com.zhengxl.thymeleafdemo.service.FileService;
-import org.apache.commons.io.FileUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
 
-import java.io.*;
-import java.util.Map;
-import java.util.UUID;
-import java.util.concurrent.ConcurrentHashMap;
+import java.io.IOException;
+import java.io.InputStream;
 
 /**
  * @description:
@@ -22,30 +18,23 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 @Service
 public class FileServiceImpl implements FileService {
-    Logger logger = LoggerFactory.getLogger(FileServiceImpl.class);
 
-    private final String STORAGE_PATH_PICTURE = "d:/upload/";
-    public static final Map<String, String> fileNameMap = new ConcurrentHashMap<>();
+    @Autowired
+    FileRepository fileRepository;
 
     @Override
-    public String save(MultipartFile file) throws IOException {
-        if (file.isEmpty()) {
-            return "";
-        }
-        String suffix = file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf('.'));
+    public String saveInputStream(String clientFileName, InputStream inputStream) throws IOException {
+        return fileRepository.saveFile(clientFileName,inputStream);
 
-        String fileName = UUID.randomUUID().toString() + suffix;
-        String serverFilePath = STORAGE_PATH_PICTURE + fileName;
-        File destDir = new File(serverFilePath);
-        FileUtils.copyToFile(file.getInputStream(), destDir);
-        fileNameMap.put(fileName,file.getOriginalFilename());
-
-        return fileName;
     }
 
     @Override
-    public InputStream get(String fileName) throws IOException {
-        String targetFilePath = STORAGE_PATH_PICTURE + fileName;
-        return FileUtils.openInputStream(new File(targetFilePath));
+    public InputStream getInputStream(String serverFileName) throws IOException {
+        return fileRepository.getInputStream(serverFileName);
+    }
+
+    @Override
+    public String getClientFileName(String serverFileName) {
+        return fileRepository.getClientFileName(serverFileName);
     }
 }

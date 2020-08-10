@@ -3,6 +3,7 @@ package com.zhengxl.thymeleafdemo.utils;
 import javax.servlet.http.HttpServletRequest;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 
 /**
  * @description:
@@ -14,17 +15,28 @@ import java.net.URLEncoder;
  */
 public class HttpUtils {
     public static String getDownloadFileName(HttpServletRequest request, String fileName) throws UnsupportedEncodingException {
-        String agent = request.getHeader("USER-AGENT");
+        // 获取 agent 信息，统一转换为小写方便后续对比
+        String agent = request.getHeader("USER-AGENT").toLowerCase();
         String downLoadFileName;
         // 微软浏览器
-        if (agent.contains("MSIE") || agent.contains("Trident") || agent.contains("Edge")) {
-            downLoadFileName = URLEncoder.encode(fileName, "utf-8")
+        if (agent.contains("msie") || agent.contains("trident") || agent.contains("edge")) {
+            downLoadFileName = URLEncoder.encode(fileName, StandardCharsets.UTF_8.toString())
                     .replaceAll("\\+", "%20");
         }
-        // 其他浏览器
-        else {
-            downLoadFileName = new String(fileName.getBytes(), "ISO8859-1");
+        // 火狐浏览器
+        else if (agent.contains("firefox")) {
+            downLoadFileName = URLEncoder.encode(fileName, StandardCharsets.UTF_8.toString())
+                    .replaceAll("\\+", "%20");
         }
+        // safari 浏览器
+        else if (agent.contains("firefox")) {
+            downLoadFileName = "";
+        }
+        // Chrome 等其他浏览器
+        else {
+            downLoadFileName = new String(fileName.getBytes(), StandardCharsets.ISO_8859_1);
+        }
+
         return downLoadFileName;
     }
 }

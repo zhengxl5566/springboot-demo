@@ -6,7 +6,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -28,40 +27,51 @@ import java.io.IOException;
 public class UploadController {
 
     private static final Logger logger = LoggerFactory.getLogger(UploadController.class);
-    private static final String INDEX_PAGE = "index";
-    private static final String SUCCESS_PAGE = "success";
+    private static final String PAGE_INDEX = "index";
+    private static final String PAGE_SUCCESS = "upload-success";
 
     @Autowired
     FileService fileservice;
 
-
-    @GetMapping("/")
-    public String upload() {
-        return INDEX_PAGE;
-    }
-
+    /**
+     * @param file
+     * @param model
+     * @return java.lang.String
+     * @description 上传单个文件
+     * @author 郑晓龙
+     * @createTime 2020/8/10 17:02
+     **/
     @PostMapping("/uploadFile")
     public String add(@RequestParam("file") MultipartFile file, Model model) throws IOException {
         if (file.isEmpty()) {
-            return INDEX_PAGE;
+            logger.error("上传的文件为空");
+            return PAGE_INDEX;
         }
-        String fileName = fileservice.save(file);
+        String clientFilename = file.getOriginalFilename();
+        String serverFileName = fileservice.saveInputStream(clientFilename, file.getInputStream());
+        model.addAttribute("serverFileName", serverFileName);
 
-        model.addAttribute("fileName",fileName);
-        return SUCCESS_PAGE;
+        return PAGE_SUCCESS;
     }
 
+    /**
+     * @param files
+     * @return java.lang.String
+     * @description 上传多个文件
+     * @author 郑晓龙
+     * @createTime 2020/8/10 17:02
+     **/
     @PostMapping("/uploadMultiFiles")
     public String uploadMultiFiles(@RequestParam("files") MultipartFile[] files) throws IOException {
         if (files.length <= 0) {
-            return INDEX_PAGE;
+            logger.error("上传的文件为空");
+            return PAGE_INDEX;
         }
         for (MultipartFile file : files) {
-            fileservice.save(file);
+            String clientFilename = file.getOriginalFilename();
+            String serverFileName = fileservice.saveInputStream(clientFilename, file.getInputStream());
         }
 
-        return SUCCESS_PAGE;
+        return PAGE_SUCCESS;
     }
-
-
 }

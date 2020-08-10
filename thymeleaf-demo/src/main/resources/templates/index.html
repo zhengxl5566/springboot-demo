@@ -6,44 +6,45 @@
     <title>文件上传</title>
     <style>
         div {
-            margin: 10px;
-            padding:10px;
+            margin-left: 10px;
+            padding: 10px;
         }
     </style>
 </head>
 
 <body>
+
 <h2>文件上传页面</h2>
 <div>
-    上传单个文件
+    <span>上传单个文件</span>
+    <form action="/upload/uploadFile" method="post" enctype="multipart/form-data">
+        <div>
+            <input type="file" name="file">
+        </div>
+        <div>
+            <input type="submit" value="提交">
+        </div>
+
+    </form>
 </div>
-<form action="/upload/uploadFile" method="post" enctype="multipart/form-data">
-    <div>
-        <input type="file" name="file">
-    </div>
-    <div>
-        <input type="submit" value="提交">
-    </div>
 
-</form>
-
-<!--<div>-->
-<!--    上传多个文件-->
-<!--</div>-->
-<!--<form action="/upload/uploadMultiFiles" method="post" enctype="multipart/form-data">-->
-<!--    <div>-->
-<!--        <input type="file" name="files">-->
-<!--    </div>-->
-<!--    <div>-->
-<!--        <input type="file" name="files">-->
-<!--    </div>-->
-<!--    <div>-->
-<!--        <input type="file" name="files">-->
-<!--    </div>-->
-<!--    <div>-->
-<!--        <input type="submit" value="提交">-->
-<!--    </div>-->
-<!--</form>-->
+<div>
+    上传多个文件
+    <form action="/upload/uploadMultiFiles" method="post" enctype="multipart/form-data">
+        <div>
+            <input type="file" name="files">
+        </div>
+        <div>
+            <input type="file" name="files">
+        </div>
+        <div>
+            <input type="file" name="files">
+        </div>
+        <div>
+            <input type="submit" value="提交">
+        </div>
+    </form>
+</div>
 </body>
 
 </html>
