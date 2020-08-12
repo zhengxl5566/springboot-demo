@@ -1,0 +1,26 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        div {
+            margin: 10px;
+            padding:10px;
+        }
+    </style>
+</head>
+<body>
+<h2>操作成功！</h2>
+<div>
+    <a th:href="@{/download/downloadFile(serverFileName = ${serverFileName})}">点此下载刚刚上传的附件</a>
+</div>
+<div>
+    <a href="/">返回</a>
+</div>
+</body>
+</html>
+
