@@ -37,6 +37,7 @@ public class FileRepository {
      **/
     public String saveFile(String clientFileName, InputStream inputStream) throws IOException {
         String suffix = clientFileName.substring(clientFileName.lastIndexOf('.'));
+        // 生成一个服务端文件名防止因为重名造成的文件被覆盖
         String serverFileName = UUID.randomUUID().toString() + suffix;
         FileUtils.copyToFile(inputStream, new File(storagePath + serverFileName));
         // 保存服务端文件名和客户端文件名对照关系

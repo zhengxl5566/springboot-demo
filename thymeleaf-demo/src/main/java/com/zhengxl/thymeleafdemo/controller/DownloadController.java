@@ -4,7 +4,6 @@ import com.zhengxl.thymeleafdemo.service.FileService;
 import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -31,8 +30,9 @@ public class DownloadController {
 
     @Autowired
     private FileService fileService;
+
     @GetMapping("test")
-    public String test(String name){
+    public String test(String name) {
         return name;
     }
 
@@ -53,6 +53,7 @@ public class DownloadController {
                 .append("filename*=")
                 .append("utf-8''")
                 .append(percentEncodedFileName);
+
         response.setHeader("Content-disposition",
                 contentDispositionValue.toString());
 
@@ -62,6 +63,6 @@ public class DownloadController {
             IOUtils.copy(inputStream, outputStream);
         }
 
-        return "下载成功";
+        return "OK!";
     }
 }
