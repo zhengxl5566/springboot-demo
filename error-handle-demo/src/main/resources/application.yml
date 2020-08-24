@@ -1,0 +1,8 @@
+server:
+  error:
+    path: /error
+    whitelabel:
+      enabled: false
+spring:
+  thymeleaf:
+    cache: false
