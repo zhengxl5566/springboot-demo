@@ -27,10 +27,11 @@ public class CustomErrorController implements ErrorController {
 
             if (statusCode == HttpStatus.NOT_FOUND.value()) {
                 return "my404";
+            } else if (statusCode == HttpStatus.UNAUTHORIZED.value()) {
+                return "my401";
             } else if (statusCode == HttpStatus.INTERNAL_SERVER_ERROR.value()) {
                 return "my500";
             }
-
             // 这里后期可以扩展其他错误页面
         }
         return "my404";
