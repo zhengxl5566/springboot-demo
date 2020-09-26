@@ -1,5 +1,6 @@
 server:
   error:
+    # 使用默认的 /error
     path: /error
     whitelabel:
       enabled: false
