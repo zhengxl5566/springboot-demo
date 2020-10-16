@@ -30,6 +30,7 @@ import java.util.stream.Collectors;
 public class GlobalControllerAdvice {
 
     private static final Logger logger = LoggerFactory.getLogger(GlobalControllerAdvice.class);
+
     /**
      * 客户端参数错误时返回信息
      **/
