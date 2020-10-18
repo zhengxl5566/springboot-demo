@@ -8,7 +8,9 @@ import org.springframework.validation.FieldError;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -123,5 +125,18 @@ public class UserController {
     @PostMapping("update")
     public ResultInfo update(@Validated({Update.class}) UserVO userVO) {
         return new ResultInfo().success(userVO);
+    }
+
+
+    /**
+     * @param userVO
+     * @return com.zhengxl.validationdemo.common.ResultInfo
+     * @description 为了防止一次导入过多，可以校验入参数组大小
+     * @author 郑晓龙
+     * @createTime 2020/10/16 8:20
+     **/
+    @PostMapping("batchUpdate")
+    public ResultInfo update(@Valid @Size(max = 2,message = "批量导入最多支持2个对象") @RequestBody List<UserVO> userVOs) {
+        return new ResultInfo().success(userVOs);
     }
 }

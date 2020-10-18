@@ -9,11 +9,13 @@ import java.io.IOException;
 
 //@Component
 //@Order(2)
-@WebFilter(urlPatterns = "/*")
+//@WebFilter(urlPatterns = "/*")
 public class MyAnotherFilter implements Filter {
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
-        System.out.println("my another filter");
+        System.out.println("my another filter in");
         filterChain.doFilter(servletRequest,servletResponse);
+        System.out.println("my another filter out");
+
     }
 }
