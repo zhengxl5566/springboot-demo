@@ -1,0 +1,4 @@
+spring:
+  freemarker:
+    cache: false
+    suffix: .ftlh
