@@ -2,3 +2,4 @@ spring:
   freemarker:
     cache: false
     suffix: .ftlh
+#    template-loader-path: file:E:/templates/

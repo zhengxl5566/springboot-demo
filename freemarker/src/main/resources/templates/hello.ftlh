@@ -5,8 +5,12 @@
     <title>Title</title>
 </head>
 <body>
+<#assign myString = "abcde">
 
-<p>HELLO,WORLD!</p>
+<#if myString?starts_with('abca')> <p>exits</p></#if>
+
+<p>Hi,<#if name?contains("zheng")>our beloved boss </#if>${name}</p>
+<p>HELLO,WORLD ${myString?cap_first}</p>
 
 </body>
 </html>
