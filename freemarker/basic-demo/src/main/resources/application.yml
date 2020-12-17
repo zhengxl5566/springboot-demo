@@ -1,7 +1,0 @@
-server:
-  port: 8080
-spring:
-  freemarker:
-    template-loader-path: classpath:/templates/
-    cache: true
-    suffix: .ftlh
