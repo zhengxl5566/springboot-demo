@@ -5,13 +5,18 @@
     <title>Title</title>
 </head>
 <body>
-${users[0].name?length}
-<#list users as user>
-    <ol>
-        <li>
-            username:${user.name},age:${user.age}
-        </li>
-    </ol>
-</#list>
+<#if users??>
+    <#list users as user>
+        <ol>
+            <li>
+                username:${user.name},age:${user.age}
+            </li>
+        </ol>
+    </#list>
+
+</#if>
+
+
+
 </body>
 </html>

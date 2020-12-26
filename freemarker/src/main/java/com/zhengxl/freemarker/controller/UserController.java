@@ -26,4 +26,16 @@ public class UserController {
         model.addAttribute("users",userService.getAllUser());
         return "user-list";
     }
+
+    @GetMapping("insert")
+    public String insertUser(){
+       userService.insert();
+        return "user-list";
+    }
+    @GetMapping("getCache")
+    public String getCache(){
+        String cache = userService.cache();
+
+        return "user-list";
+    }
 }

@@ -8,11 +8,11 @@ package com.zhengxl.freemarker.entity;
  * @createTime:2020/12/17 16:31
  * @version:1.0
  */
-public class UserDO {
+public class User {
     private String name;
     private Integer age;
 
-    public UserDO(String name, Integer age) {
+    public User(String name, Integer age) {
         this.name = name;
         this.age = age;
     }

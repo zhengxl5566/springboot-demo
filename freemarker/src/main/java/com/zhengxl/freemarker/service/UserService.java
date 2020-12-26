@@ -1,6 +1,6 @@
 package com.zhengxl.freemarker.service;
 
-import com.zhengxl.freemarker.entity.UserDO;
+import com.zhengxl.freemarker.entity.User;
 
 import java.util.List;
 
@@ -13,5 +13,8 @@ import java.util.List;
  * @version:1.0
  */
 public interface UserService {
-    List<UserDO> getAllUser();
+    List<User> getAllUser();
+    Integer insert();
+    String cache();
+
 }

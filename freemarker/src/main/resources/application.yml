@@ -1,5 +1,8 @@
+
 spring:
   freemarker:
     cache: false
-    suffix: .ftlh
+    suffix: .ftl
+server:
+  port: 8080
 #    template-loader-path: file:E:/templates/
