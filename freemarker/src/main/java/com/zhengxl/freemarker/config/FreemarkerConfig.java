@@ -26,14 +26,14 @@ public class FreemarkerConfig {
     @Autowired
     private FreeMarkerConfigurer freeMarkerConfigurer;
 
-    @Bean
+    @PostConstruct
     public void freemarkerConfigurer() throws TemplateModelException {
-        freemarker.template.Configuration configuration = new freemarker.template.Configuration(freemarker.template.Configuration.VERSION_2_3_30);
-        BeansWrapperBuilder beansWrapperBuilder = new BeansWrapperBuilder(freemarker.template.Configuration.getVersion());
+        freemarker.template.Configuration configuration1 = freeMarkerConfigurer.getConfiguration();
+        BeansWrapperBuilder beansWrapperBuilder = new BeansWrapperBuilder(freemarker.template.Configuration.VERSION_2_3_30);
         BeansWrapper beansWrapper = beansWrapperBuilder.build();
         TemplateHashModel staticModels = beansWrapper.getStaticModels();
         TemplateModel templateModel = staticModels.get("com.zhengxl.freemarker.tools.UserStaticTool");
-        configuration.setSharedVariable("UserStaticTool",templateModel);
+        configuration1.setSharedVariable("UserStaticTool",templateModel);
 
     }
 }
