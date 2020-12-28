@@ -38,6 +38,6 @@ public class HelloWorld {
         model.addAttribute("content", content);
         model.addAttribute("content2", content2);
         model.addAttribute("userService",userService);
-        return "hello.ftlh";
+        return "hello";
     }
 }
