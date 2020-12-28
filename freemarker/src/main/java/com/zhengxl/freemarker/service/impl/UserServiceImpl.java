@@ -23,10 +23,7 @@ import java.util.List;
  */
 @Service
 public class UserServiceImpl implements UserService {
-    @Autowired
-    CacheManager cacheManager;
     @Override
-    @Cacheable("users")
     public List<User> getAllUser() {
         List<User> users = new ArrayList<>();
         users.add(new User("zxl",18));
@@ -36,19 +33,24 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    @CacheEvict("users")
     public Integer insert() {
         return null;
     }
 
     @Override
-    public String cache() {
-        Cache usersCache = cacheManager.getCache("helloCache");
-        Object nativeCache = usersCache.getNativeCache();
-        Collection<String> cacheNames = cacheManager.getCacheNames();
-
-        return nativeCache.toString();
+    public User getUser(String userName) {
+        return new User(userName,20);
     }
+
+
+//    @Override
+//    public String cache() {
+//        Cache usersCache = cacheManager.getCache("helloCache");
+//        Object nativeCache = usersCache.getNativeCache();
+//        Collection<String> cacheNames = cacheManager.getCacheNames();
+//
+//        return nativeCache.toString();
+//    }
 
 
 }

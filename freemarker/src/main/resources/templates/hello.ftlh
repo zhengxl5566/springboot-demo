@@ -5,8 +5,15 @@
     <title>Title</title>
 </head>
 <body>
-<#assign user = UserStaticTool.getUser("zhangsan")>
-    ${user.name}
+<#assign names = userService.allUser>
+<#list names as name>
+    <ul>
+        <li>
+            ${name.name}
+        </li>
+    </ul>
+
+</#list>
 
 <#--<#assign myString = "abcde">-->
 <#--<#if myString?starts_with('abca')> <p>exits</p></#if>-->
