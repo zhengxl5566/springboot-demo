@@ -43,7 +43,7 @@ public class FreemarkerConfig {
     /**
      * @param configuration
      * @return void
-     * @description 将静态方法包装到共享变量中
+     * @description 将类静态模型包装到共享变量中
      * @author 郑晓龙
      * @createTime 2020/12/28 14:40
      **/

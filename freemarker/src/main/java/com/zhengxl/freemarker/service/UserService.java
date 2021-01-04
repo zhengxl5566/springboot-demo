@@ -14,8 +14,8 @@ import java.util.List;
  */
 public interface UserService {
     List<User> getAllUser();
-    Integer insert();
-    User getUser(String userName);
-//    String cache();
 
+    Integer insert(User user);
+
+    User getUser(String userName);
 }

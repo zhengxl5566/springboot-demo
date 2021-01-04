@@ -2,8 +2,6 @@ package com.zhengxl.freemarker.controller;
 
 import com.zhengxl.freemarker.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.CacheManager;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,8 +17,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class HelloWorld {
     @Autowired
-    UserService userService;
+    private UserService userService;
 
+
+    public HelloWorld(UserService userService) {
+        this.userService = userService;
+    }
 
     @GetMapping("hello")
     public String hello(String name, Model model) {
@@ -37,7 +39,8 @@ public class HelloWorld {
 
         model.addAttribute("content", content);
         model.addAttribute("content2", content2);
-        model.addAttribute("userService",userService);
+
+        model.addAttribute("userService", userService);
         return "hello";
     }
 }
