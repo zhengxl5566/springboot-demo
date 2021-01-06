@@ -2,7 +2,6 @@ package com.zhengxl.freemarker.properties;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Primary;
-import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Component;
 
 /**
@@ -18,15 +17,15 @@ import org.springframework.stereotype.Component;
 @ConfigurationProperties(prefix = "spring.freemarker")
 public class FreeMarkerProperties extends org.springframework.boot.autoconfigure.freemarker.FreeMarkerProperties{
     /**
-     * 需要引入的静态工具类路径
+     * 需要引入的静态工具类的包路径
      */
-    private String[] staticClassLocation;
+    private String[] staticMethodPackagePath;
 
-    public String[] getStaticClassLocation() {
-        return staticClassLocation;
+    public String[] getStaticMethodPackagePath() {
+        return staticMethodPackagePath;
     }
 
-    public void setStaticClassLocation(String[] staticClassLocation) {
-        this.staticClassLocation = staticClassLocation;
+    public void setStaticMethodPackagePath(String[] staticMethodPackagePath) {
+        this.staticMethodPackagePath = staticMethodPackagePath;
     }
 }

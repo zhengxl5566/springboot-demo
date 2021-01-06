@@ -3,11 +3,8 @@ spring:
   freemarker:
     cache: false
     suffix: .ftlh
-    staticClassLocation:
+    staticMethodPackagePath:
       - com.zhengxl.freemarker.tools.UserStaticTool
       - com.zhengxl.freemarker.tools.AnotherStaticTool
 server:
   port: 8080
-
-
-#    template-loader-path: file:E:/templates/

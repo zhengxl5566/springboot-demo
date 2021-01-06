@@ -9,6 +9,8 @@ import freemarker.template.TemplateHashModel;
 import freemarker.template.TemplateModel;
 import freemarker.template.TemplateModelException;
 import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.context.WebApplicationContext;
@@ -16,7 +18,6 @@ import org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer;
 
 import javax.annotation.PostConstruct;
 import java.util.Map;
-import java.util.Set;
 
 /**
  * @description:
@@ -28,13 +29,14 @@ import java.util.Set;
  */
 @Configuration
 public class FreemarkerConfig {
-
     @Autowired
     private FreeMarkerProperties freeMarkerProperties;
     @Autowired
     private FreeMarkerConfigurer freeMarkerConfigurer;
     @Autowired
     private WebApplicationContext webApplicationContext;
+
+    private Logger logger = LoggerFactory.getLogger(FreemarkerConfig.class);
 
     @PostConstruct
     public void freemarkerConfigurer() throws TemplateModelException {
@@ -58,16 +60,14 @@ public class FreemarkerConfig {
         BeansWrapper beansWrapper = beansWrapperBuilder.build();
         // 返回一个 TemplateHashModel ,包含所有类名，通过它可以调用类的静态方法
         TemplateHashModel staticModels = beansWrapper.getStaticModels();
-
-        String[] staticClassLocation = freeMarkerProperties.getStaticClassLocation();
-
-        if (staticClassLocation == null || staticClassLocation.length <= 0) {
+        String[] packagePaths = freeMarkerProperties.getStaticMethodPackagePath();
+        if (packagePaths == null || packagePaths.length <= 0) {
+            logger.info("no static method class need to be exposed");
             return;
         }
-
-        for (String location : staticClassLocation) {
-            String className = StringUtils.substringAfterLast(location, ".");
-            TemplateModel templateModel = staticModels.get(location);
+        for (String packagePath : packagePaths) {
+            String className = StringUtils.substringAfterLast(packagePath, ".");
+            TemplateModel templateModel = staticModels.get(packagePath);
             configuration.setSharedVariable(className, templateModel);
         }
     }
@@ -81,6 +81,12 @@ public class FreemarkerConfig {
      **/
     private void exposeUserDefinedDirectives(freemarker.template.Configuration configuration) throws TemplateModelException {
         Map<String, TemplateDirectiveModel> directiveModelMap = webApplicationContext.getBeansOfType(TemplateDirectiveModel.class);
+
+        if (directiveModelMap.size() <= 0) {
+            logger.info("no user defined directives need to be exposed");
+            return;
+        }
+
         directiveModelMap.entrySet().forEach(
                 entry -> configuration.setSharedVariable(entry.getKey(), entry.getValue())
         );
