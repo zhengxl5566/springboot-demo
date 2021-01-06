@@ -1,9 +1,8 @@
-
 spring:
   freemarker:
     cache: false
     suffix: .ftlh
-    staticMethodPackagePath:
+    staticToolPackagePath:
       - com.zhengxl.freemarker.tools.UserStaticTool
       - com.zhengxl.freemarker.tools.AnotherStaticTool
 server:

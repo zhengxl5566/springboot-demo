@@ -60,7 +60,7 @@ public class FreemarkerConfig {
         BeansWrapper beansWrapper = beansWrapperBuilder.build();
         // 返回一个 TemplateHashModel ,包含所有类名，通过它可以调用类的静态方法
         TemplateHashModel staticModels = beansWrapper.getStaticModels();
-        String[] packagePaths = freeMarkerProperties.getStaticMethodPackagePath();
+        String[] packagePaths = freeMarkerProperties.getStaticToolPackagePath();
         if (packagePaths == null || packagePaths.length <= 0) {
             logger.info("no static method class need to be exposed");
             return;

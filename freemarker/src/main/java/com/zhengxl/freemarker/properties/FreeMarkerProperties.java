@@ -19,13 +19,13 @@ public class FreeMarkerProperties extends org.springframework.boot.autoconfigure
     /**
      * 需要引入的静态工具类的包路径
      */
-    private String[] staticMethodPackagePath;
+    private String[] staticToolPackagePath;
 
-    public String[] getStaticMethodPackagePath() {
-        return staticMethodPackagePath;
+    public String[] getStaticToolPackagePath() {
+        return staticToolPackagePath;
     }
 
-    public void setStaticMethodPackagePath(String[] staticMethodPackagePath) {
-        this.staticMethodPackagePath = staticMethodPackagePath;
+    public void setStaticToolPackagePath(String[] staticToolPackagePath) {
+        this.staticToolPackagePath = staticToolPackagePath;
     }
 }

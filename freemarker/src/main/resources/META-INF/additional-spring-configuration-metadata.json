@@ -1,7 +1,7 @@
 {
   "properties": [
     {
-      "name": "spring.freemarker.staticMethodPackagePath",
+      "name": "spring.freemarker.staticToolPackagePath",
       "type": "java.lang.String",
       "description": "the class path of static method that you want to expose to the FTL."
   }
