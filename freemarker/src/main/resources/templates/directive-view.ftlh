@@ -18,7 +18,7 @@
 <br>
 <#--演示带参数的自定义指令-->
 <@myDirective method="getUser" userName="zhengxl5566";user>
-${user.name}
+${user.name} ${user.age}
 </@myDirective>
 
 

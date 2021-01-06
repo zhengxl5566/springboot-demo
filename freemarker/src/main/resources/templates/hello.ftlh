@@ -15,6 +15,8 @@
 
 </#list>
 
+<p>${UserStaticTool.getUser("zhangsan")}</p>
+
 <#--<#assign myString = "abcde">-->
 <#--<#if myString?starts_with('abca')> <p>exits</p></#if>-->
 <#--    <#assign name="zhengxl">-->

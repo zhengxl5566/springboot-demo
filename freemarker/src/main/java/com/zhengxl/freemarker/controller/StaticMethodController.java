@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.GetMapping;
  */
 @Controller
 public class StaticMethodController {
-    @GetMapping("static-method")
+    @GetMapping("static")
     public String staticMethodView(){
-        return "static-method";
+        return "static-method-view";
     }
 }

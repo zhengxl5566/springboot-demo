@@ -1,0 +1,8 @@
+{
+  "properties": [
+    {
+      "name": "spring.freemarker.staticClassLocation",
+      "type": "java.lang.String",
+      "description": "the class path of static method that you want to expose to the FTL."
+  }
+] }

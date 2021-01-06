@@ -13,5 +13,9 @@
 <#assign user = UserStaticTool.getUser("zhangsan")>
 姓名：${user.name} 年龄：${user.age}
 
+<br>
+<#assign res = AnotherStaticTool.sayHello()>
+<p>${res}</p>
+
 </body>
 </html>

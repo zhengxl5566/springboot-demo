@@ -15,6 +15,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class UserDefinedDirectiveController {
     @GetMapping("directive")
     public String userDefinedDirective(){
-        return "user-defined-directive";
+        return "directive-view";
     }
 }
