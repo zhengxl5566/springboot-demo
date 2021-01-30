@@ -13,6 +13,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.ResourceLoader;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer;
 
@@ -41,6 +43,9 @@ public class FreemarkerConfig {
     @PostConstruct
     public void freemarkerConfigurer() throws TemplateModelException {
         freemarker.template.Configuration configuration = freeMarkerConfigurer.getConfiguration();
+        // 关闭空值自动向上查找
+        configuration.setFallbackOnNullLoopVariable(false);
+
         // 暴露静态方法
         exposeStaticMethod(configuration);
         // 暴露自定义指令

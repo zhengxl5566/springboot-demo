@@ -1,8 +1,8 @@
 package com.zhengxl.freemarker.tools;
 
+import com.google.common.collect.Maps;
 import com.zhengxl.freemarker.entity.User;
 
-import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -15,7 +15,7 @@ import java.util.Map;
  */
 public class UserStaticTool {
     public static User getUser(String userName){
-        Map<String,User> userMap = new HashMap<>();
+        Map<String,User> userMap = Maps.newHashMap();
         userMap.put("zhangsan",new User("zhangsan", 18));
         userMap.put("lisi",new User("lisi", 19));
         userMap.put("wangwu",new User("wangwu", 20));

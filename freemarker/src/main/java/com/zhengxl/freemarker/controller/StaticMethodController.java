@@ -4,7 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
 /**
- * @description:
+ * @description:展示FTL中调用Java静态方法的用法
  * @projectName:freemarker
  * @see:com.zhengxl.freemarker.controller
  * @author:郑晓龙

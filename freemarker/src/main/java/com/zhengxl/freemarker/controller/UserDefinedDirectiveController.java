@@ -4,7 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
 /**
- * @description:
+ * @description: 展示用户自定义指令的用法
  * @projectName:freemarker
  * @see:com.zhengxl.freemarker.controller
  * @author:郑晓龙
@@ -15,6 +15,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class UserDefinedDirectiveController {
     @GetMapping("directive")
     public String userDefinedDirective(){
-        return "directive-view";
+        return "directive";
     }
 }
