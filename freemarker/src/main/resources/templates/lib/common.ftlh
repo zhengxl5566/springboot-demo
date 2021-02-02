@@ -22,3 +22,8 @@
         </ol>
     </#list>
 </#macro>
+
+<#macro myFooter>
+    <hr>
+    <p>这里是 footer</p>
+</#macro>

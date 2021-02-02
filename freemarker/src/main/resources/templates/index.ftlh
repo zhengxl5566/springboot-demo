@@ -105,10 +105,17 @@ ${allUsers[0].name}
 </#list>
 <hr>
 
-<br>
-<#include "footer.ftlh">
+<#--隔行变色-->
+<#assign mySequence = ["Java 课代表","张三","李四","王五"]>
+<#list mySequence as name>
+    <span style="color:  ${name?item_cycle("red","blue","yellow")}">   ${name}<br/> </span>
 
-<hr>
-${footerStr}:${bbb}
+</#list>
+
+<br>
+<#--将include使用import代替-->
+<#--<#include "footer.ftlh">-->
+<@common.myFooter/>
+
 </body>
 </html>
