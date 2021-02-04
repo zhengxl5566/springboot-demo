@@ -13,4 +13,5 @@
 | /download-demo           | 三行代码搞定附件中文名乱码问题          | [下载的附件名总乱码？你该去读一下 RFC 文档了！](https://www.cnblogs.com/zhengxl5566/p/13492602.html) |
 | /error-handle-demo       | 定制错误页面，消除WhiteLabel Error Page | [干掉 WhiteLabel Error Page](https://segmentfault.com/a/1190000025128752) |
 | /filter-demo             | SpringBoot中三种使用filter的方式        | [SpringBoot 中使用 Filter 的正确姿势](https://javahelper.top/java/2020/07/07/using-filter-in-springboot.html) |
+| /freemarker              | Freemarker语法入门教程                  | [Freemarker 教程(一)-模板开发手册](https://javahelper.top/java/2021/02/02/freemarker-template-dev-guide.html) |
 
