@@ -38,10 +38,17 @@ public interface UserService {
 
     /**
      * 演示 被 try catch 包裹的事务照样回滚了
-     * @param name
+     * @param userName
+     * @param cityName
      */
-    void userInsertTxInvokeCityInsert(String name);
+    void userInsertTxInvokeCityInsert(String userName,String cityName);
 
+    /**
+     * 带事务插入成功
+     * @param name
+     * @throws RollBackException
+     */
+    void insertWithTx(String name);
     /**
      * 查询总条数
      */

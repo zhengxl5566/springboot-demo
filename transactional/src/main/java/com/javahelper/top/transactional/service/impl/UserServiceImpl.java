@@ -31,12 +31,14 @@ public class UserServiceImpl implements UserService {
     @Override
     @Transactional(rollbackFor = Exception.class)
     public void insertWithTxAndRollBack(String name) throws RollBackException {
-        jdbcTemplate.execute("INSERT INTO USER (NAME) VALUES ('"+ name+"')");
+        jdbcTemplate.execute("INSERT INTO USER (NAME) VALUES ('" + name + "')");
+
         throw new RollBackException("Just For Roll Back");
     }
 
     /**
-     * 类内部未开启事务的方法调用开启事务的方法，不生效
+     * 类内部未开启事务的方法调用开启事务的方法，事务不生效
+     *
      * @param name
      * @throws RollBackException
      */
@@ -48,6 +50,7 @@ public class UserServiceImpl implements UserService {
     /**
      * 类内部未开启事务的方法调用开启事务的方法，生效
      * 将当前的 service 作为实例字段，自己注入
+     *
      * @param name
      * @throws RollBackException
      */
@@ -57,19 +60,29 @@ public class UserServiceImpl implements UserService {
     }
 
     /**
-     * 两个方法的事务都会回滚，但会抛出如下异常：
+     * 演示 被 try catch 包裹的事务照样回滚了
+     * 两个方法的事务都会回滚，并且抛出如下异常：
      * Transaction rolled back because it has been marked as rollback-only
-     * @param name
+     *
+     * @param userName
+     * @param cityName
      */
     @Override
     @Transactional(rollbackFor = Throwable.class)
-    public void userInsertTxInvokeCityInsert(String name){
-        jdbcTemplate.execute("INSERT INTO USER (NAME) VALUES ('"+ name+"')");
+    public void userInsertTxInvokeCityInsert(String userName, String cityName) {
+        jdbcTemplate.execute("INSERT INTO USER (NAME) VALUES ('" + userName + "')");
         try {
             // 带事务，抛异常回滚
-            cityService.insertWithTxAndRollBack(name);
+            cityService.insertWithTxAndRollBack(cityName);
         } catch (RollBackException e) {
+            // do nothing
         }
+    }
+
+    @Override
+    @Transactional(rollbackFor = Throwable.class)
+    public void insertWithTx(String name) {
+        jdbcTemplate.execute("INSERT INTO USER (NAME) VALUES ('" + name + "')");
     }
 
     @Override

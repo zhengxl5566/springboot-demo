@@ -1,6 +1,7 @@
 package com.javahelper.top.transactional.controller;
 
 import com.javahelper.top.transactional.exception.RollBackException;
+import com.javahelper.top.transactional.service.CityService;
 import com.javahelper.top.transactional.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -18,9 +19,12 @@ import org.springframework.web.bind.annotation.*;
 public class UserController {
     @Autowired
     UserService userService;
+    @Autowired
+    CityService cityService;
 
     /**
      * 数据未插入，事务回滚生效
+     *
      * @param name
      * @return
      * @throws RollBackException
@@ -50,8 +54,10 @@ public class UserController {
         }
         return userService.countAll();
     }
+
     /**
      * 数据插入失败，事务回滚生效
+     *
      * @param name
      * @return
      * @throws RollBackException
@@ -66,20 +72,16 @@ public class UserController {
         return userService.countAll();
     }
 
-    @PostMapping("invokeAnotherTransaction")
-    public Long invokeAnotherTransaction(String name){
-        userService.userInsertTxInvokeCityInsert(name);
-        return userService.countAll();
-    }
-
     /**
      * 演示 被 try catch 包裹的事务依然回滚了
-     * @param name
+     *
+     * @param userName
+     * @param cityName
      * @return
      */
     @PostMapping("rollBackWithTryCatch")
-    public Long rollBackWithTryCatch(String name){
-        userService.userInsertTxInvokeCityInsert(name);
-        return userService.countAll();
+    public String rollBackWithTryCatch(String userName, String cityName) {
+        userService.userInsertTxInvokeCityInsert(userName, cityName);
+        return "user table count(*):" + userService.countAll()+"city table count(*):"+cityService.countAll();
     }
 }

@@ -16,9 +16,6 @@ public interface CityService {
      * @param name
      */
     void insertWithTxAndRollBack(String name) throws RollBackException;
-    /**
-     * 不带事务，抛异常
-     * @param name
-     */
-    void insertAndThrowException(String name);
+
+    Long countAll();
 }

@@ -5,7 +5,6 @@ import com.javahelper.top.transactional.service.CityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
@@ -28,13 +27,13 @@ public class CityServiceImpl implements CityService {
     @Override
     @Transactional(rollbackFor = Throwable.class)
     public void insertWithTxAndRollBack(String name) throws RollBackException {
-        jdbcTemplate.execute("INSERT INTO CITY (ADDRESS) VALUES ('北京')");
+        jdbcTemplate.execute("INSERT INTO CITY (ADDRESS) VALUES ('" + name + "')");
         throw new RollBackException("Just For Roll Back");
     }
 
     @Override
-    public void insertAndThrowException(String name) {
-        jdbcTemplate.execute("INSERT INTO CITY (ADDRESS) VALUES ('上海')");
-        throw new RuntimeException();
+    public Long countAll() {
+        return (long) jdbcTemplate.queryForList("SELECT COUNT(*) AS CNT FROM CITY")
+                .get(0).get("CNT");
     }
 }
