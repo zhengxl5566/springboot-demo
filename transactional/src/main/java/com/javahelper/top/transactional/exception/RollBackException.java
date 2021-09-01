@@ -9,7 +9,7 @@ package com.javahelper.top.transactional.exception;
  * @version:1.0
  */
 public class RollBackException extends Exception {
-    public RollBackException(String message){
+    public RollBackException(String message) {
         super(message);
     }
 }

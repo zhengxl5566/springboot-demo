@@ -1,10 +1,11 @@
 package com.javahelper.top.transactional.controller;
 
 import com.javahelper.top.transactional.exception.RollBackException;
-import com.javahelper.top.transactional.service.CityService;
 import com.javahelper.top.transactional.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 /**
  * @description:
@@ -19,69 +20,86 @@ import org.springframework.web.bind.annotation.*;
 public class UserController {
     @Autowired
     UserService userService;
-    @Autowired
-    CityService cityService;
 
     /**
-     * 数据未插入，事务回滚生效
+     * @param name
+     * @param anotherName
+     * @return void
+     * @description 演示 被 try catch 包裹的事务照样回滚了
+     * 两个方法的事务都会回滚，并且抛出如下异常：
+     * Transaction rolled back because it has been marked as rollback-only
+     * @author 郑晓龙
+     * @createTime 2021/9/1 19:27
+     **/
+    @PostMapping("rollBackWithTryCatch")
+    public void rollBackWithTryCatch(String name, String anotherName) {
+        userService.tryCatchRollBackSuccess(name, anotherName);
+//        return "user table count(*):" + userService.countAll()+"city table count(*):"+cityService.countAll();
+    }
+
+    /**
+     * 演示 被 try catch 包裹的事务未回滚
      *
      * @param name
      * @return
      * @throws RollBackException
      */
     @PostMapping("insertThenRollBack")
-    public Long insertThenRollBack(String name) {
+    public void insertThenRollBack(String name) {
         try {
-            userService.insertWithTxAndRollBack(name);
+            userService.tryCatchRollBackFail(name);
         } catch (RollBackException e) {
 
         }
-        return userService.countAll();
+//        return userService.countAll();
     }
 
     /**
-     * 数据插入成功，事务回滚未生效
      * @param name
-     * @return
-     * @throws RollBackException
-     */
+     * @return void
+     * @description 演示类内部未开启事务的方法调用开启事务的方法，事务不生效
+     * @author 郑晓龙
+     * @createTime 2021/9/1 18:47
+     **/
     @PostMapping("methodInvokeTransactionFail")
-    public Long methodInvokeTransactionFail(String name) {
+    public void methodInvokeTransactionFail(String name) {
         try {
-            userService.invokeInsertWithTxRollBackFail(name);
+            userService.innerInvokeRollBackFail(name);
         } catch (RollBackException e) {
 
         }
-        return userService.countAll();
+//        return userService.countAll();
     }
 
     /**
-     * 数据插入失败，事务回滚生效
-     *
      * @param name
-     * @return
-     * @throws RollBackException
-     */
+     * @return void
+     * @description 演示类内部未开启事务的方法调用开启事务的方法，事务生效
+     * @author 郑晓龙
+     * @createTime 2021/9/1 18:47
+     **/
     @PostMapping("methodInvokeTransactionSuccess")
-    public Long methodInvokeTransactionSuccess(String name) {
+    public void methodInvokeTransactionSuccess(String name) {
         try {
-            userService.invokeInsertWithTxRollBackSuccess(name);
+            userService.innerInvokeRollBackSuccess(name);
         } catch (RollBackException e) {
 
         }
-        return userService.countAll();
+//        return userService.countAll();
     }
 
     /**
-     * 演示 被 try catch 包裹的事务依然回滚了
-     *
-     * @param userName
-     * @param cityName
-     * @return
-     */
-    @PostMapping("rollBackWithTryCatch")
-    public String rollBackWithTryCatch(String userName, String cityName) {
-        userService.userInsertTxInvokeCityInsert(userName, cityName);
-        return "user table count(*):" + userService.countAll()+"city table count(*):"+cityService.countAll();
+     * @param name
+     * @return void
+     * @description 演示类内部未开启事务的方法调用开启事务的方法，事务生效
+     * @author 郑晓龙
+     * @createTime 2021/9/1 18:47
+     **/
+    @PostMapping("nestedTransaction")
+    public void nestedTransaction(String name, String anotherName) {
+
+        userService.invokeNestedTx(name, anotherName);
     }
+
+
 }
