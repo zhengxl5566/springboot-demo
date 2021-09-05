@@ -34,7 +34,6 @@ public class UserController {
     @PostMapping("rollBackWithTryCatch")
     public void rollBackWithTryCatch(String name, String anotherName) {
         userService.tryCatchRollBackSuccess(name, anotherName);
-//        return "user table count(*):" + userService.countAll()+"city table count(*):"+cityService.countAll();
     }
 
     /**
@@ -51,7 +50,6 @@ public class UserController {
         } catch (RollBackException e) {
 
         }
-//        return userService.countAll();
     }
 
     /**
@@ -68,7 +66,6 @@ public class UserController {
         } catch (RollBackException e) {
 
         }
-//        return userService.countAll();
     }
 
     /**
@@ -85,7 +82,6 @@ public class UserController {
         } catch (RollBackException e) {
 
         }
-//        return userService.countAll();
     }
 
     /**

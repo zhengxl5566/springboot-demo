@@ -150,6 +150,7 @@ public class UserServiceImpl implements UserService {
     public void invokeNestedTx(String name, String otherName) {
         jdbcTemplate.execute("INSERT INTO USER (NAME) VALUES ('" + name + "')");
         try {
+            // NESTED传播属性的内部方法抛异常，回滚到保存点
             userService.insertWithTxNested(otherName);
         } catch (RollBackException e) {
             // do nothing
