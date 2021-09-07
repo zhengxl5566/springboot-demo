@@ -14,7 +14,7 @@
 | /error-handle-demo       | 定制错误页面，消除WhiteLabel Error Page | [干掉 WhiteLabel Error Page](https://segmentfault.com/a/1190000025128752) |
 | /filter-demo             | SpringBoot中三种使用filter的方式        | [SpringBoot 中使用 Filter 的正确姿势](https://javahelper.top/java/2020/07/07/using-filter-in-springboot.html) |
 | /freemarker              | Freemarker语法入门教程                  | [Freemarker 教程(一)-模板开发手册](https://javahelper.top/java/2021/02/02/freemarker-template-dev-guide.html) |
-| /transactional           | 演示声明式事务的各种失效情况            | 撰写中                                                       |
+| /transactional           | 演示声明式事务的各种失效情况            | [Spring 声明式事务应该怎么学？](https://javahelper.top/java/2021/09/06/how-to-learn-spring-transactional.html) |
 
 
 
