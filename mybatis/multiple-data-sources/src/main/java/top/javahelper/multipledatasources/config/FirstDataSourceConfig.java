@@ -1,6 +1,12 @@
 package top.javahelper.multipledatasources.config;
 
+import org.springframework.boot.autoconfigure.jdbc.DataSourceProperties;
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.boot.jdbc.DataSourceBuilder;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+
+import javax.sql.DataSource;
 
 /**
  * @description:
@@ -9,6 +15,9 @@ import org.springframework.context.annotation.Configuration;
  */
 @Configuration
 public class FirstDataSourceConfig {
-
-    public void test(){}
+    @Bean
+    @ConfigurationProperties(prefix = "spring.datasource")
+    public DataSource firstDataSource(DataSourceProperties dataSourceProperties){
+        return DataSourceBuilder.create().build();
+    }
 }
