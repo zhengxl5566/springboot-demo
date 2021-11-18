@@ -1,12 +1,17 @@
 server:
   port: 8080
-
 spring:
   datasource:
-    jdbc-url: jdbc:mysql://123.57.211.17:3306/db2?serverTimezone=UTC
-    username: root
-    password: imw100pass!@#
-    driver-class-name: com.mysql.cj.jdbc.Driver
+    first:
+      driver-class-name: org.h2.Driver
+      jdbc-url: jdbc:h2:mem:db1
+      username: sa
+      password:
+    second:
+      driver-class-name: org.h2.Driver
+      jdbc-url: jdbc:h2:mem:db2
+      username: sa
+      password:
 #  autoconfigure:
 #    exclude:
 #      - org.mybatis.spring.boot.autoconfigure.MybatisAutoConfiguration
@@ -14,8 +19,8 @@ spring:
 #      - org.springframework.boot.autoconfigure.jdbc.JdbcTemplateAutoConfiguration
 #      - org.springframework.boot.autoconfigure.jdbc.DataSourceTransactionManagerAutoConfiguration
 
-management:
-  endpoints:
-    web:
-      exposure:
-        include: beans
+#management:
+#  endpoints:
+#    web:
+#      exposure:
+#        include: beans
