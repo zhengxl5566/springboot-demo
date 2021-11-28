@@ -21,15 +21,16 @@ public class FirstDataSourceConfig {
     @Bean
     @Primary
     @ConfigurationProperties(prefix = "spring.datasource.first")
-    public DataSource firstDataSource(){
+    public DataSource firstDataSource() {
         return DataSourceBuilder.create().build();
     }
 
     @Bean
     @Primary
-    JdbcTemplate firstJdbcTemplate(DataSource dataSource, JdbcProperties properties) {
-        JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
-        JdbcProperties.Template template = properties.getTemplate();
+    JdbcTemplate firstJdbcTemplate(DataSource firstDataSource) {
+        JdbcTemplate jdbcTemplate = new JdbcTemplate(firstDataSource);
+        System.out.println(firstDataSource);
+        JdbcProperties.Template template = new JdbcProperties.Template();
         jdbcTemplate.setFetchSize(template.getFetchSize());
         jdbcTemplate.setMaxRows(template.getMaxRows());
         if (template.getQueryTimeout() != null) {

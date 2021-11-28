@@ -9,6 +9,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import javax.sql.DataSource;
+import javax.xml.bind.SchemaOutputResolver;
 
 /**
  * @description:
@@ -25,9 +26,10 @@ public class SecondDataSourceConfig {
     }
 
     @Bean
-    JdbcTemplate secondJdbcTemplate(@Qualifier("secondDataSource") DataSource dataSource, JdbcProperties properties) {
-        JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
-        JdbcProperties.Template template = properties.getTemplate();
+    JdbcTemplate secondJdbcTemplate(@Qualifier("secondDataSource") DataSource secondDataSource) {
+        JdbcTemplate jdbcTemplate = new JdbcTemplate(secondDataSource);
+        System.out.println(secondDataSource);
+        JdbcProperties.Template template = new JdbcProperties.Template();
         jdbcTemplate.setFetchSize(template.getFetchSize());
         jdbcTemplate.setMaxRows(template.getMaxRows());
         if (template.getQueryTimeout() != null) {

@@ -44,7 +44,6 @@ public class InitData {
     }
 
     private void initSchema(JdbcTemplate jdbcTemplate) {
-        jdbcTemplate.execute("DROP TABLE IF EXISTS user");
         jdbcTemplate.execute("CREATE TABLE user ("
                 + "id VARCHAR(50) NOT NULL AUTO_INCREMENT,"
                 + "name VARCHAR(50) NOT NULL,"
