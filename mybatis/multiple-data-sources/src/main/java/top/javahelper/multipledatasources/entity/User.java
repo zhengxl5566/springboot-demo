@@ -2,11 +2,8 @@ package top.javahelper.multipledatasources.entity;
 
 /**
  * @description:
- * @projectName:multiple-data-sources
- * @see:top.javahelper.multipledatasources.entity
- * @author:郑晓龙
- * @createTime:2021/11/5 9:07
- * @version:1.0
+ * @author:Java课代表
+ * @createTime:2021/11/3 23:13
  */
 public class User {
     private Long id;
