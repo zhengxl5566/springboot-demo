@@ -1,0 +1,20 @@
+<!DOCTYPE generatorConfiguration PUBLIC
+        "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+    <context id="simple" targetRuntime="MyBatis3Simple">
+        <jdbcConnection driverClass="org.h2.Driver"
+                        connectionURL="jdbc:h2:mem:db1"
+                        userId="sa" password=""/>
+
+        <javaModelGenerator targetPackage="top.javahelper.dynamicmultipledatasources.model" targetProject="src/main/java"/>
+
+        <sqlMapGenerator targetPackage="top.javahelper.dynamicmultipledatasources.mapper" targetProject="src/main/resources"/>
+
+        <javaClientGenerator type="XMLMAPPER" targetPackage="top.javahelper.dynamicmultipledatasources.mapper" targetProject="src/main/java"/>
+
+        <table tableName="user" domainObjectName="User">
+            <generatedKey column="id" sqlStatement="H2"></generatedKey>
+        </table>
+    </context>
+</generatorConfiguration>
