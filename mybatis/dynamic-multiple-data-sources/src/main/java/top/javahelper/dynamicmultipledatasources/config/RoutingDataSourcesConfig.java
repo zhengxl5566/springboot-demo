@@ -5,6 +5,7 @@ import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
+import top.javahelper.dynamicmultipledatasources.common.RoutingDataSource;
 
 import javax.sql.DataSource;
 import java.util.HashMap;
@@ -19,7 +20,7 @@ import java.util.Map;
  * @version:1.0
  */
 @Configuration
-public class MultipleDataSourcesConfig {
+public class RoutingDataSourcesConfig {
     @Bean
     @ConfigurationProperties(prefix = "spring.datasource.first")
     public DataSource firstDataSource() {
@@ -34,8 +35,8 @@ public class MultipleDataSourcesConfig {
 
     @Primary
     @Bean
-    public MultipleDataSource dataSource() {
-        MultipleDataSource dynamicDataSource = new MultipleDataSource();
+    public RoutingDataSource dataSource() {
+        RoutingDataSource dynamicDataSource = new RoutingDataSource();
         dynamicDataSource.setDefaultTargetDataSource(firstDataSource());
         Map<Object, Object> dataSourceMap = new HashMap<>();
         dataSourceMap.put("first", firstDataSource());
