@@ -15,4 +15,12 @@ public class RoutingDataSourceContext {
         String key = LOOKUP_KEY_HOLDER.get();
         return key == null ? "first" : key;
     }
+
+    public static void setRoutingKey(String routingKey) {
+        LOOKUP_KEY_HOLDER.set(routingKey);
+    }
+
+    public static void reset() {
+        LOOKUP_KEY_HOLDER.remove();
+    }
 }

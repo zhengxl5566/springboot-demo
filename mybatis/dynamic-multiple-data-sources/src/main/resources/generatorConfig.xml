@@ -9,7 +9,7 @@
 
         <javaModelGenerator targetPackage="top.javahelper.dynamicmultipledatasources.model" targetProject="src/main/java"/>
 
-        <sqlMapGenerator targetPackage="top.javahelper.dynamicmultipledatasources.mapper" targetProject="src/main/resources"/>
+        <sqlMapGenerator targetPackage="mapper" targetProject="src/main/resources"/>
 
         <javaClientGenerator type="XMLMAPPER" targetPackage="top.javahelper.dynamicmultipledatasources.mapper" targetProject="src/main/java"/>
 

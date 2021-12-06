@@ -21,6 +21,7 @@ import java.util.Map;
  */
 @Configuration
 public class RoutingDataSourcesConfig {
+
     @Bean
     @ConfigurationProperties(prefix = "spring.datasource.first")
     public DataSource firstDataSource() {
