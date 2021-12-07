@@ -2,6 +2,8 @@ package top.javahelper.dynamicmultipledatasources.service;
 
 import top.javahelper.dynamicmultipledatasources.model.User;
 
+import java.util.List;
+
 /**
  * @description:
  * @projectName:dynamic-multiple-data-sources
@@ -13,4 +15,6 @@ import top.javahelper.dynamicmultipledatasources.model.User;
 public interface UserService {
 
     void addUser(User user);
+
+    List<User> selectAll();
 }
