@@ -1,6 +1,13 @@
 package top.javahelper.dynamicmultipledatasources.aspect;
 
+import org.aspectj.lang.ProceedingJoinPoint;
+import org.aspectj.lang.annotation.After;
+import org.aspectj.lang.annotation.Around;
+import org.aspectj.lang.annotation.Aspect;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
+import top.javahelper.dynamicmultipledatasources.common.RoutingDataSourceContext;
+import top.javahelper.dynamicmultipledatasources.common.WithDataSource;
 
 /**
  * @description:
@@ -11,5 +18,16 @@ import org.springframework.stereotype.Component;
  * @version:1.0
  */
 @Component
-public class DataSourceAspect {
+@Aspect
+public class DataSourceAspect{
+    @Around("@annotation(withDataSource)")
+    public Object switchDataSource(ProceedingJoinPoint pjp, WithDataSource withDataSource) throws Throwable {
+
+        String routingKey = withDataSource.value();
+        RoutingDataSourceContext.setRoutingKey(routingKey);
+        Object result = pjp.proceed();
+        RoutingDataSourceContext.reset();
+        return result;
+    }
+
 }

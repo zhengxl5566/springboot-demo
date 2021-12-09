@@ -2,6 +2,7 @@ package top.javahelper.dynamicmultipledatasources.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import top.javahelper.dynamicmultipledatasources.common.WithDataSource;
 import top.javahelper.dynamicmultipledatasources.mapper.UserMapper;
 import top.javahelper.dynamicmultipledatasources.model.User;
 import top.javahelper.dynamicmultipledatasources.service.UserService;
@@ -22,11 +23,13 @@ public class UserServiceImpl implements UserService {
     UserMapper userMapper;
 
     @Override
+    @WithDataSource("first")
     public void addUser(User user) {
         userMapper.insert(user);
     }
 
     @Override
+    @WithDataSource("second")
     public List<User> selectAll() {
         return userMapper.selectAll();
     }

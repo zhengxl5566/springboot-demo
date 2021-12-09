@@ -29,15 +29,15 @@ public class UserController {
     public void addUser(String name,String dataSourceName) {
         User user = new User();
         user.setName(name);
-        RoutingDataSourceContext.setRoutingKey(dataSourceName);
+//        RoutingDataSourceContext.setRoutingKey(dataSourceName);
         userService.addUser(user);
-        RoutingDataSourceContext.reset();
+//        RoutingDataSourceContext.reset();
     }
     @GetMapping("all")
     public List<User> getAllUsers(String dataSourceName){
-        RoutingDataSourceContext.setRoutingKey(dataSourceName);
+//        RoutingDataSourceContext.setRoutingKey(dataSourceName);
         List<User> users = userService.selectAll();
-        RoutingDataSourceContext.reset();
+//        RoutingDataSourceContext.reset();
         return users;
     }
 }
