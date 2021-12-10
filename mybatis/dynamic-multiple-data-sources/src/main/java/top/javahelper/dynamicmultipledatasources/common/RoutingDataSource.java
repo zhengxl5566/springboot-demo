@@ -3,7 +3,8 @@ package top.javahelper.dynamicmultipledatasources.common;
 import org.springframework.jdbc.datasource.lookup.AbstractRoutingDataSource;
 
 /**
- * @description:
+ * @description: 支持动态切换的数据源
+ * 通过重写 determineCurrentLookupKey 实现数据源切换
  * @projectName:dynamic-multiple-data-sources
  * @see:top.javahelper.dynamicmultipledatasources.config
  * @author:郑晓龙

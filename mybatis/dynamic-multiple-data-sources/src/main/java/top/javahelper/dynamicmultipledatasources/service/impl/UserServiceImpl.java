@@ -23,13 +23,13 @@ public class UserServiceImpl implements UserService {
     UserMapper userMapper;
 
     @Override
-    @WithDataSource("first")
+//    @WithDataSource("first")
     public void addUser(User user) {
         userMapper.insert(user);
     }
 
     @Override
-    @WithDataSource("second")
+//    @WithDataSource("second")
     public List<User> selectAll() {
         return userMapper.selectAll();
     }

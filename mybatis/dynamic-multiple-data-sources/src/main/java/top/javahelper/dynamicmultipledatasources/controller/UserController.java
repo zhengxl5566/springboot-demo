@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import top.javahelper.dynamicmultipledatasources.common.RoutingDataSourceContext;
+import top.javahelper.dynamicmultipledatasources.common.WithDataSource;
 import top.javahelper.dynamicmultipledatasources.model.User;
 import top.javahelper.dynamicmultipledatasources.service.UserService;
 
@@ -25,19 +25,48 @@ public class UserController {
     @Autowired
     UserService userService;
 
-    @PostMapping("/add")
-    public void addUser(String name,String dataSourceName) {
+    /**
+     * 向第一个数据源插入用户
+     * 并返回数据库中的所有用户列表
+     * @param name
+     * @return
+     */
+    @PostMapping("first/add")
+    @WithDataSource("first")
+    public List<User> addUserFirstDataSource(String name) {
         User user = new User();
         user.setName(name);
-//        RoutingDataSourceContext.setRoutingKey(dataSourceName);
         userService.addUser(user);
-//        RoutingDataSourceContext.reset();
+        return userService.selectAll();
     }
-    @GetMapping("all")
-    public List<User> getAllUsers(String dataSourceName){
-//        RoutingDataSourceContext.setRoutingKey(dataSourceName);
+
+
+    @GetMapping("/first/all")
+    @WithDataSource("first")
+    public List<User> getAllUsersWithFirstDataSource() {
         List<User> users = userService.selectAll();
-//        RoutingDataSourceContext.reset();
+        return users;
+    }
+
+    /**
+     * 向第二个数据源插入用户
+     * 并返回数据库中的所有用户列表
+     * @param name
+     * @return
+     */
+    @PostMapping("second/add")
+    @WithDataSource("second")
+    public List<User> addUserSecondDataSource(String name) {
+        User user = new User();
+        user.setName(name);
+        userService.addUser(user);
+        return userService.selectAll();
+    }
+
+    @GetMapping("/second/all")
+    @WithDataSource("second")
+    public List<User> getAllUsersWithSecondDataSource() {
+        List<User> users = userService.selectAll();
         return users;
     }
 }

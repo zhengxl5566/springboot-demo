@@ -1,6 +1,8 @@
 package top.javahelper.dynamicmultipledatasources.mapper;
 
 import java.util.List;
+
+import org.apache.ibatis.annotations.Mapper;
 import top.javahelper.dynamicmultipledatasources.model.User;
 
 public interface UserMapper {
