@@ -35,7 +35,7 @@ public class UserServiceImpl implements UserService {
         secondUserMapper.insert(user);
 
         // 主动触发回滚
-        int i = 1/0;
+//        int i = 1/0;
     }
 
     @Override
