@@ -10,17 +10,13 @@ import top.javahelper.dynamicmultipledatasources.common.RoutingDataSourceContext
 import top.javahelper.dynamicmultipledatasources.common.WithDataSource;
 
 /**
- * @description:
- * @projectName:dynamic-multiple-data-sources
- * @see:top.javahelper.dynamicmultipledatasources.aspect
+ * 数据源切面，根据注解 @WithDataSource 的 value 切换数据源
  * @author:郑晓龙
- * @createTime:2021/12/7 15:49
- * @version:1.0
  */
 @Order(Ordered.HIGHEST_PRECEDENCE)
 @Aspect
 @Component
-public class DataSourceAspect{
+public class DataSourceAspect {
     @Around("@annotation(withDataSource)")
     public Object switchDataSource(ProceedingJoinPoint pjp, WithDataSource withDataSource) throws Throwable {
 

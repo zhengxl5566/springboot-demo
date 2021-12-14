@@ -11,4 +11,8 @@ spring:
       username: sa
       password:
 mybatis:
-  mapper-locations: classpath:mapper/*.xml
+  mapper-locations: classpath:mybatis/*.xml
+
+logging:
+  level:
+    top.javahelper.dynamicmultipledatasources.mapper: debug
