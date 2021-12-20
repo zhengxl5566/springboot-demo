@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import top.javahelper.dynamicmultipledatasources.common.RoutingDataSourceContext;
 import top.javahelper.dynamicmultipledatasources.common.WithDataSource;
 import top.javahelper.dynamicmultipledatasources.model.User;
 import top.javahelper.dynamicmultipledatasources.service.UserService;
@@ -24,9 +25,8 @@ public class UserController {
     /**
      * 向第一个数据源插入用户
      * 并返回数据库中的所有用户列表
-     *
      * @param name
-     * @return
+     * @return List<User>
      */
     @PostMapping("first")
     // 注解标明使用"first"数据源
@@ -38,11 +38,14 @@ public class UserController {
         return userService.selectAll();
     }
 
-
-    @GetMapping("/first/all")
+    /**
+     *
+     * @return List<User>
+     */
+    @GetMapping("first/all")
     // 注解标明使用"first"数据源
     @WithDataSource("first")
-    public List<User> getAllUsersWithFirstDataSource() {
+    public List<User> getAllUsersFromFirst() {
         List<User> users = userService.selectAll();
         return users;
     }
@@ -51,12 +54,12 @@ public class UserController {
      * 向第二个数据源插入用户
      * 并返回数据库中的所有用户列表
      * @param name
-     * @return
+     * @return List<User>
      */
     @PostMapping("second")
     // 注解标明使用"second"数据源
     @WithDataSource("second")
-    public List<User> addUserWithSecondDataSource(String name) {
+    public List<User> addUserToSecond(String name) {
         User user = new User();
         user.setName(name);
         userService.insert(user);
@@ -64,11 +67,25 @@ public class UserController {
         return userService.selectAll();
     }
 
-    @GetMapping("/second/all")
+    @GetMapping("second/all")
     // 注解标明使用"second"数据源
     @WithDataSource("second")
-    public List<User> getAllUsersWithSecondDataSource() {
+    public List<User> getAllUsersFromSecond() {
         List<User> users = userService.selectAll();
+        return users;
+    }
+
+    @PostMapping("dynamic")
+    public List<User> addWithDynamic(String name,String dataSource) {
+        User user = new User();
+        user.setName(name);
+
+        // 设置为参数中指定的数据源
+        RoutingDataSourceContext.setRoutingKey(dataSource);
+        userService.insert(user);
+        List<User> users = userService.selectAll();
+        RoutingDataSourceContext.reset();
+
         return users;
     }
 

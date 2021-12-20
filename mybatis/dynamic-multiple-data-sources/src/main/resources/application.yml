@@ -10,8 +10,6 @@ spring:
       jdbc-url: jdbc:h2:mem:db2
       username: sa
       password:
-mybatis:
-  mapper-locations: classpath:mybatis/*.xml
 
 logging:
   level:

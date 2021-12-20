@@ -11,10 +11,10 @@
 
         <sqlMapGenerator targetPackage="mybatis" targetProject="src/main/resources"/>
 
-        <javaClientGenerator type="XMLMAPPER" targetPackage="top.javahelper.dynamicmultipledatasources.mapper" targetProject="src/main/java"/>
+        <javaClientGenerator type="ANNOTATEDMAPPER" targetPackage="top.javahelper.dynamicmultipledatasources.mapper" targetProject="src/main/java"/>
 
         <table tableName="user" domainObjectName="User">
-            <generatedKey column="id" sqlStatement="H2"></generatedKey>
+            <generatedKey column="id" sqlStatement="JDBC"></generatedKey>
         </table>
     </context>
 </generatorConfiguration>

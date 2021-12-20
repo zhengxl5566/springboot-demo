@@ -12,12 +12,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * @description:
- * @projectName:dynamic-multiple-data-sources
- * @see:top.javahelper.dynamicmultipledatasources.config
- * @author:郑晓龙
- * @createTime:2021/12/2 11:24
- * @version:1.0
+ * 数据源配置
+ * 把多个数据源，装配到一个 RoutingDataSource 里
+ * @author :郑晓龙
  */
 @Configuration
 public class RoutingDataSourcesConfig {
@@ -36,13 +33,13 @@ public class RoutingDataSourcesConfig {
 
     @Primary
     @Bean
-    public RoutingDataSource dataSource() {
-        RoutingDataSource dynamicDataSource = new RoutingDataSource();
-        dynamicDataSource.setDefaultTargetDataSource(firstDataSource());
+    public RoutingDataSource routingDataSource() {
+        RoutingDataSource routingDataSource = new RoutingDataSource();
+        routingDataSource.setDefaultTargetDataSource(firstDataSource());
         Map<Object, Object> dataSourceMap = new HashMap<>();
         dataSourceMap.put("first", firstDataSource());
         dataSourceMap.put("second", secondDataSource());
-        dynamicDataSource.setTargetDataSources(dataSourceMap);
-        return dynamicDataSource;
+        routingDataSource.setTargetDataSources(dataSourceMap);
+        return routingDataSource;
     }
 }

@@ -10,12 +10,7 @@ import top.javahelper.dynamicmultipledatasources.service.UserService;
 import java.util.List;
 
 /**
- * @description:
- * @projectName:dynamic-multiple-data-sources
- * @see:top.javahelper.dynamicmultipledatasources.service.impl
- * @author:郑晓龙
- * @createTime:2021/12/6 16:29
- * @version:1.0
+ * @author :郑晓龙
  */
 @Service
 public class UserServiceImpl implements UserService {
@@ -30,10 +25,7 @@ public class UserServiceImpl implements UserService {
     @Override
     @Transactional(rollbackFor = Throwable.class)
     public void insertWithTx(User user) {
-
         userMapper.insert(user);
-
-
     }
 
 

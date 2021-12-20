@@ -8,14 +8,10 @@ import top.javahelper.dynamicmultipledatasources.common.RoutingDataSourceContext
 import javax.annotation.PostConstruct;
 
 /**
- * @description: 初始化两个数据源的表结构
+ * 初始化两个数据源的表结构
  * 为了演示方便，使用了内存数据库 H2，所以需要初始化一下
  * 这里也演示了切换数据源的基本用法
- * @projectName:dynamic-multiple-data-sources
- * @see:top.javahelper.dynamicmultipledatasources.config
- * @author:郑晓龙
- * @createTime:2021/12/1 17:35
- * @version:1.0
+ * @author :郑晓龙
  */
 @Configuration
 public class H2DataBaseInit {

@@ -1,10 +1,10 @@
 package top.javahelper.dynamicmultipledatasources.common;
 
 /**
- * @description: 数据源 key 上下文
+ * 数据源 key 上下文
  * 通过控制 ThreadLocal变量 LOOKUP_KEY_HOLDER 的值用于控制数据源切换
  * @see RoutingDataSource
- * @author:郑晓龙
+ * @author :郑晓龙
  */
 public class RoutingDataSourceContext {
     private static final ThreadLocal<String> LOOKUP_KEY_HOLDER = new ThreadLocal<>();
