@@ -20,9 +20,3 @@
 扫码关注公众号，第一时间获取推送
 
 ![tx prop required](https://zhengxl5566.github.io/img/java-helper/qr-code-1270x300.jpg)
-
-
-## Stargazers over time
-
-[![Stargazers over time](https://starchart.cc/helloworlde/SpringBoot-DynamicDataSource.svg)](https://starchart.cc/helloworlde/SpringBoot-DynamicDataSource)
-
