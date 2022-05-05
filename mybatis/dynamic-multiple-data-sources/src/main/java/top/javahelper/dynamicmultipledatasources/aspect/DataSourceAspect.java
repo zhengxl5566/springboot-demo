@@ -13,9 +13,9 @@ import top.javahelper.dynamicmultipledatasources.common.WithDataSource;
  * 数据源切面
  * 根据注解 @WithDataSource 的 value 切换数据源
  *
- * @author :郑晓龙
+ * @author :Java课代表
  */
-@Order(Ordered.HIGHEST_PRECEDENCE)
+@Order(Ordered.LOWEST_PRECEDENCE - 1)
 @Aspect
 @Component
 public class DataSourceAspect {

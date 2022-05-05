@@ -92,8 +92,10 @@ public class UserController {
     /**
      * 演示事务
      */
-    @Transactional("first")
-    public void insertIntoTwoDataSourceWithTX(){
-
+    @PostMapping("addWithTX")
+    public void insertIntoTwoDataSourceWithTX(String name){
+        User user = new User();
+        user.setName(name);
+        userService.insertWithTx(user);
     }
 }

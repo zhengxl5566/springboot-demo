@@ -10,7 +10,7 @@ import top.javahelper.dynamicmultipledatasources.service.UserService;
 import java.util.List;
 
 /**
- * @author :郑晓龙
+ * @author :Java课代表
  */
 @Service
 public class UserServiceImpl implements UserService {

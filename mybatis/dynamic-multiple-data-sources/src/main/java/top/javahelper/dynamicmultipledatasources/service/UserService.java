@@ -5,7 +5,7 @@ import top.javahelper.dynamicmultipledatasources.model.User;
 import java.util.List;
 
 /**
- * @author :郑晓龙
+ * @author :Java课代表
  */
 public interface UserService {
 

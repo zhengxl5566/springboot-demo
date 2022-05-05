@@ -3,7 +3,7 @@ package top.javahelper.dynamicmultipledatasources.common;
 import java.lang.annotation.*;
 
 /**
- * @author :郑晓龙
+ * @author :Java课代表
  */
 @Target({ElementType.TYPE, ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)

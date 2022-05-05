@@ -11,7 +11,7 @@ import javax.annotation.PostConstruct;
  * 初始化两个数据源的表结构
  * 为了演示方便，使用了内存数据库 H2，所以需要初始化一下
  * 这里也演示了切换数据源的基本用法
- * @author :郑晓龙
+ * @author :Java课代表
  */
 @Configuration
 public class H2DataBaseInit {

@@ -14,7 +14,7 @@ import java.util.Map;
 /**
  * 数据源配置
  * 把多个数据源，装配到一个 RoutingDataSource 里
- * @author :郑晓龙
+ * @author :Java课代表
  */
 @Configuration
 public class RoutingDataSourcesConfig {
