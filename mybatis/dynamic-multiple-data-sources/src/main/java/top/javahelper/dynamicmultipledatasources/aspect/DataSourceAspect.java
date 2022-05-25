@@ -15,10 +15,13 @@ import top.javahelper.dynamicmultipledatasources.common.WithDataSource;
  *
  * @author :Java课代表
  */
-@Order(Ordered.LOWEST_PRECEDENCE - 1)
 @Aspect
 @Component
+// 指定优先级高于@Transactional
+// 从而保证先切换数据源再进行事务操作
+@Order(Ordered.LOWEST_PRECEDENCE - 1)
 public class DataSourceAspect {
+
     @Around("@annotation(withDataSource)")
     public Object switchDataSource(ProceedingJoinPoint pjp, WithDataSource withDataSource) throws Throwable {
 

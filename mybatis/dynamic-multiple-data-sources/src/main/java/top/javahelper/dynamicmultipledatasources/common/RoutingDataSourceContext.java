@@ -7,16 +7,17 @@ package top.javahelper.dynamicmultipledatasources.common;
  * @author :Java课代表
  */
 public class RoutingDataSourceContext {
+
     private static final ThreadLocal<String> LOOKUP_KEY_HOLDER = new ThreadLocal<>();
+
+    public static void setRoutingKey(String routingKey) {
+        LOOKUP_KEY_HOLDER.set(routingKey);
+    }
 
     public static String getRoutingKey() {
         String key = LOOKUP_KEY_HOLDER.get();
         // 默认返回第一个数据源
         return key == null ? "first" : key;
-    }
-
-    public static void setRoutingKey(String routingKey) {
-        LOOKUP_KEY_HOLDER.set(routingKey);
     }
 
     public static void reset() {

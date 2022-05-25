@@ -93,6 +93,8 @@ public class UserController {
      * 演示事务
      */
     @PostMapping("addWithTX")
+    @Transactional(rollbackFor = Throwable.class)
+    @WithDataSource("second")
     public void insertIntoTwoDataSourceWithTX(String name){
         User user = new User();
         user.setName(name);
