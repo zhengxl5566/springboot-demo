@@ -16,7 +16,7 @@ public class RoutingDataSourceContext {
 
     public static String getRoutingKey() {
         String key = LOOKUP_KEY_HOLDER.get();
-        // 默认返回第一个数据源
+        // 默认返回 key 为 first 的数据源
         return key == null ? "first" : key;
     }
 

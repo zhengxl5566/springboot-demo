@@ -24,7 +24,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public void insertWithTx(User user) {
         userMapper.insert(user);
-//        throw new RuntimeException("just for rollBack");
+        throw new RuntimeException("just for rollBack");
     }
 
 

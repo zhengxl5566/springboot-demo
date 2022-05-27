@@ -30,12 +30,12 @@ public class DataSourceAspect {
         // 2.设置数据源上下文
         RoutingDataSourceContext.setRoutingKey(routingKey);
         // 3.使用设定好的数据源处理业务
-        Object result = pjp.proceed();
-        // 4.清空数据源上下文
-        RoutingDataSourceContext.reset();
-
-        return result;
+        try {
+            return pjp.proceed();
+        } finally {
+            // 4.清空数据源上下文
+            RoutingDataSourceContext.reset();
+        }
     }
-
 }
 
