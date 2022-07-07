@@ -2,6 +2,8 @@ package com.zhengxl.mybatissample.controller;
 
 import com.zhengxl.mybatissample.model.User;
 import com.zhengxl.mybatissample.service.UserService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,6 +19,8 @@ import java.util.List;
  */
 @RestController
 public class MyController {
+    private static final Logger log = LoggerFactory.getLogger(MyController.class);
+
     @Autowired
     UserService userService;
 
@@ -27,6 +31,7 @@ public class MyController {
 
     @GetMapping("all")
     public List<User> getAll(){
+        log.debug("=== 执行queryAll ===");
         return userService.queryAll();
     }
 

@@ -1,7 +1,7 @@
 package com.zhengxl.interceptordemo.config;
 
-import com.zhengxl.interceptordemo.interceptor.AnotherInterceptor;
-import com.zhengxl.interceptordemo.interceptor.MyInterceptor;
+import com.zhengxl.interceptordemo.interceptor.HiInterceptor;
+import com.zhengxl.interceptordemo.interceptor.HelloInterceptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
@@ -18,13 +18,13 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @Configuration
 public class WebMVCConfig implements WebMvcConfigurer {
     @Autowired
-    MyInterceptor myInterceptor;
+    HelloInterceptor helloInterceptor;
     @Autowired
-    AnotherInterceptor anotherInterceptor;
+    HiInterceptor hiInterceptor;
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(myInterceptor);
-        registry.addInterceptor(anotherInterceptor);
+        registry.addInterceptor(helloInterceptor);
+        registry.addInterceptor(hiInterceptor);
     }
 }
