@@ -8,3 +8,5 @@ spring:
 
 mybatis:
   mapper-locations: classpath:mybatis/*.xml
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
